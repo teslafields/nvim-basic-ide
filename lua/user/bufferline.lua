@@ -5,7 +5,13 @@ local M = {
   dependencies = {
     {
       "famiu/bufdelete.nvim",
-      commit = "8933abc09df6c381d47dc271b1ee5d266541448e",
+      -- commit = "8933abc09df6c381d47dc271b1ee5d266541448e",
+      branch = "main",
+    },
+    {
+      "nvim-tree/nvim-web-devicons",
+      -- commit = "bc11ee2498de2310de5776477dd9dce65d03b464",
+      branch = "main",
     },
   },
 }
@@ -16,6 +22,7 @@ function M.config()
       right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
       separator_style = "thin",            -- | "thick" | "thin" | { 'any', 'any' },
+      buffer_close_icon = '',
     },
     highlights = {
       fill = {

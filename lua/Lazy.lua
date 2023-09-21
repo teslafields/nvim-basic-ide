@@ -12,9 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- example using a list of specs with the default options
-vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
+-- vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
 
--- load lazy
+--- load lazy
 require("lazy").setup("user", {
   install = { colorscheme = { require("user.colorscheme").name } },
   defaults = { lazy = true, version = "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
@@ -24,6 +24,12 @@ require("lazy").setup("user", {
   performance = {
     rtp = {
       disabled_plugins = {
+        -- "colorscheme",
+        -- "bufferline",
+        -- "nvim-tree",
+        -- "telescope",
+        -- "project",
+        -- "treesitter",
         -- "gzip", -- Plugin for editing compressed files.
         -- "matchit", -- What is it?
         --  "matchparen", -- Plugin for showing matching parens

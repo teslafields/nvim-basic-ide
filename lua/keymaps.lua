@@ -4,8 +4,9 @@ local keymap = vim.keymap.set
 local opts = { silent = true }
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
+-- keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = "\\"
+vim.o.autochdir = false
 
 -- Modes
 --   normal_mode = "n",
@@ -14,6 +15,27 @@ vim.g.mapleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+
+-- My personal mappings
+--   PageDown/PageUp
+keymap("i", "<PageDown>", "<Nop>", opts)
+keymap("i", "<PageUp>", "<Nop>", opts)
+keymap("n", "b", "<C-b>", opts)
+keymap("n", "<Space>", "<C-f>", opts)
+
+-- Close tab
+keymap("n", "<C-q>", ":tabclose<CR>", opts)
+
+--  Write to file with zz
+keymap("n", "zz", ":update<CR>", opts)
+
+-- Copy do clipboard
+keymap("v", "<S-c>", "\"+y", opts)
+
+-- Some tab keymaps
+keymap("n", "<C-n>", ":tabnew<CR>", opts)
+keymap("n", "<Leader>p", ":tabprevious<CR>", opts)
+keymap("n", "<Leader>n", ":tabnext<CR>", opts)
 
 -- Normal --
 -- Better window navigation
@@ -50,10 +72,13 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Better visualization of tabs
+keymap("v", "<Leader><Tab><Tab>", ":set invlist<CR>", opts)
+
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<C-e>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)

@@ -15,7 +15,7 @@ local function on_attach(bufnr)
   --
   -- BEGIN_DEFAULT_ON_ATTACH
   vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts "CD")
-  vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts "Open: In Place")
+  vim.keymap.set("n", "<C-o>", api.node.open.replace_tree_buffer, opts "Open: In Place")
   vim.keymap.set("n", "<C-k>", api.node.show_info_popup, opts "Info")
   vim.keymap.set("n", "<C-r>", api.fs.rename_sub, opts "Rename: Omit Filename")
   vim.keymap.set("n", "<C-t>", api.node.open.tab, opts "Open: New Tab")
@@ -27,7 +27,7 @@ local function on_attach(bufnr)
   vim.keymap.set("n", ">", api.node.navigate.sibling.next, opts "Next Sibling")
   vim.keymap.set("n", "<", api.node.navigate.sibling.prev, opts "Previous Sibling")
   vim.keymap.set("n", ".", api.node.run.cmd, opts "Run Command")
-  vim.keymap.set("n", "-", api.tree.change_root_to_parent, opts "Up")
+  vim.keymap.set("n", "u", api.tree.change_root_to_parent, opts "Up")
   vim.keymap.set("n", "a", api.fs.create, opts "Create")
   vim.keymap.set("n", "bmv", api.marks.bulk.move, opts "Move Bookmarked")
   vim.keymap.set("n", "B", api.tree.toggle_no_buffer_filter, opts "Toggle No Buffer")
@@ -52,8 +52,8 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "m", api.marks.toggle, opts "Toggle Bookmark")
   vim.keymap.set("n", "o", api.node.open.edit, opts "Open")
   vim.keymap.set("n", "O", api.node.open.no_window_picker, opts "Open: No Window Picker")
-  vim.keymap.set("n", "p", api.fs.paste, opts "Paste")
-  vim.keymap.set("n", "P", api.node.navigate.parent, opts "Parent Directory")
+  vim.keymap.set("n", "P", api.fs.paste, opts "Paste")
+  vim.keymap.set("n", "p", api.node.navigate.parent, opts "Parent Directory")
   vim.keymap.set("n", "q", api.tree.close, opts "Close")
   vim.keymap.set("n", "r", api.fs.rename, opts "Rename")
   vim.keymap.set("n", "R", api.tree.reload, opts "Refresh")
@@ -84,7 +84,7 @@ function M.config()
     on_attach = on_attach,
     update_focused_file = {
       enable = true,
-      update_cwd = true,
+      update_cwd = false,
     },
     renderer = {
       icons = {
