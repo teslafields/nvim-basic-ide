@@ -26,7 +26,7 @@ require("lazy").setup("user", {
       disabled_plugins = {
         -- "colorscheme",
         -- "bufferline",
-        -- "nvim-tree",
+        "nvim-treesitter", -- this is breaking bash highlight
         -- "telescope",
         -- "project",
         -- "treesitter",
