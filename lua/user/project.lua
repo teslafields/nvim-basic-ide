@@ -18,7 +18,7 @@ function M.config()
     detection_methods = { "pattern" },
 
     -- patterns used to detect root dir, when **"pattern"** is in detection_methods
-    patterns = { ".git", "Makefile", "package.json" },
+    patterns = { ".git", "package.json" },
 
     -- Manual mode doesn't automatically change your root directory, so you have
     -- the option to manually do so using `:ProjectRoot` command.

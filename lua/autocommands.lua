@@ -2,8 +2,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
   callback = function()
     vim.cmd [[
-      nnoremap <silent> <buffer> q :close<CR> 
-      set nobuflisted 
+      nnoremap <silent> <buffer> q :close<CR>
+      set nobuflisted
     ]]
   end,
 })
@@ -17,6 +17,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 -- Automatically close tab/vim when nvim-tree is the last window in the tab
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
+
+-- Download bitbake syntax highlighting
+-- https://neovim.io/doc/user/lua-guide.html
+vim.cmd([[
+    if empty(glob('~/.config/nvim/syntax/bitbake.vim'))
+      silent !curl -fLo ~/.config/nvim/syntax/bitbake.vim --create-dirs
+      \ https://git.yoctoproject.org/poky/plain/bitbake/contrib/vim/syntax/bitbake.vim
+    endif
+]])
+vim.cmd "au BufRead,BufNewFile *.bb set filetype=bitbake"
+vim.cmd "au BufRead,BufNewFile *.bbclass set filetype=bitbake"
+vim.cmd "au BufRead,BufNewFile *.inc set filetype=bitbake"
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
