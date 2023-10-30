@@ -6,12 +6,12 @@ local M = {
     {
       "famiu/bufdelete.nvim",
       -- commit = "8933abc09df6c381d47dc271b1ee5d266541448e",
-      branch = "main",
+      branch = "master",
     },
     {
       "nvim-tree/nvim-web-devicons",
       -- commit = "bc11ee2498de2310de5776477dd9dce65d03b464",
-      branch = "main",
+      branch = "master",
     },
   },
 }
