@@ -35,6 +35,11 @@ function M.config()
     icons_enabled = false,
   }
 
+  local filepath= {
+    "filename",
+    path = 1
+  }
+
   local location = {
     "location",
     padding = 0,
@@ -49,15 +54,16 @@ function M.config()
       icons_enabled = true,
       theme = "auto",
       component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
+      section_separators = { left = '', right = ''},
       disabled_filetypes = { "alpha", "dashboard" },
       always_divide_middle = true,
     },
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "branch" },
-      lualine_c = { diagnostics },
-      lualine_x = { diff, spaces, "encoding", filetype },
+      -- lualine_c = { "filename" },
+      lualine_c = { filepath },
+      lualine_x = { spaces, "encoding", filetype },
       lualine_y = { location },
       lualine_z = { "progress" },
     },

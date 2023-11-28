@@ -14,6 +14,15 @@ local actions = require "telescope.actions"
 
 M.opts = {
   defaults = {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--case-sensitive",
+    },
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },

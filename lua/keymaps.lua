@@ -91,8 +91,15 @@ keymap("v", "<Leader><Tab><Tab>", ":set invlist<CR>", opts)
 
 -- Plugins --
 
+-- Project
+keymap("n", "<leader>bd", ":ProjectRoot<CR>", opts)
+keymap("n", "<leader>wd", ":pwd<CR>", opts)
+keymap("n", "<leader>cd", ":lcd %:h<CR>", opts)
+keymap("n", "<leader>..", ":lcd ..<CR>", opts)
+
 -- NvimTree
 keymap("n", "<C-e>", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<C-c>", ":NvimTreeFocus<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
