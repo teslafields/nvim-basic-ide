@@ -2,7 +2,7 @@ local M = {}
 
 M.servers = {
   -- "clangd",
-  "rust_analyzer",
+  -- "rust_analyzer",
 }
 
 return M

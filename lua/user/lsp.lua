@@ -48,6 +48,7 @@ function M.config()
     Opts = {
       on_attach = on_attach,
       capabilities = capabilities,
+      autostart = false,
     }
 
     server = vim.split(server, "@")[1]

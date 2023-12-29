@@ -27,7 +27,10 @@ require("lazy").setup("user", {
         -- "colorscheme",
         -- "bufferline",
         "nvim-treesitter", -- this is breaking bash highlight
+        "gitsigns",
         -- "telescope",
+        "fzf",
+        "fzf.vim",
         -- "project",
         -- "treesitter",
         -- "gzip", -- Plugin for editing compressed files.

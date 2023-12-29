@@ -8,6 +8,18 @@ local opts = { silent = true }
 vim.g.mapleader = "\\"
 vim.o.autochdir = false
 
+-- FZF
+vim.g.fzf_action = {
+	-- ["ctrl-c"] = "",
+	["ctrl-t"] = "tab split",
+	["ctrl-i"] = "split",
+	["ctrl-v"] = "vsplit",
+	["ctrl-j"] = "preview-down",
+	["ctrl-k"] = "preview-up",
+ }
+
+vim.fn.setenv("FZF_DEFAULT_COMMAND", "rg --hidden --ignore-file .git -l \"\"")
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -108,6 +120,13 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<C-f>", ":Telescope find_files<CR>", opts)
 keymap("n", "<C-b>", ":Telescope buffers<CR>", opts)
+
+-- Fzf
+-- keymap("n", "<leader>ff", ":Files<CR>", opts)
+-- keymap("n", "<leader>ft", ":Rg<CR>", opts)
+-- keymap("n", "<leader>fb", ":Buffers<CR>", opts)
+-- keymap("n", "<C-f>", ":Files<CR>", opts)
+-- keymap("n", "<C-b>", ":Buffers<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
