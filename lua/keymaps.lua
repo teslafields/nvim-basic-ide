@@ -16,9 +16,7 @@ vim.g.fzf_action = {
 	["ctrl-v"] = "vsplit",
 	["ctrl-j"] = "preview-down",
 	["ctrl-k"] = "preview-up",
- }
-
-vim.fn.setenv("FZF_DEFAULT_COMMAND", "rg --hidden --ignore-file .git -l \"\"")
+}
 
 -- Modes
 --   normal_mode = "n",
@@ -36,15 +34,26 @@ keymap("n", "b", "<C-b>", opts)
 keymap("n", "<Space>", "<C-f>", opts)
 
 -- Close tab
-keymap("n", "<C-q>", ":tabclose<CR>", opts)
+-- keymap("n", "<C-q>", ":tabclose<CR>", opts)
 
 --  Write to file with zz
 keymap("n", "zz", ":update<CR>", opts)
 
--- Copy do clipboard
+-- Copy selected text to clipboard
 keymap("v", "<S-c>", "\"+y", opts)
 
--- Don't copy to clipboard
+-- Copy the current file path to clipboard
+keymap("n", "<Leader>cp", ":let @+=@%<CR>", opts)
+-- Copy the current file name to clipboard
+keymap("n", "<Leader>cf", ":let @+=expand('%:t')<CR>", opts)
+
+-- Remove trailing white spaces
+keymap("n", "<Leader>w", ":let _s=@/ <Bar> :%s/\\s\\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>", opts)
+-- Select text and search-replace on it
+keymap("v", "<C-s>", "\"hy:%s/<C-r>h//gc<left><left><left>")
+-- Search for select text
+keymap("v", "//", "y/\\V<C-R>=escape(@\",'/\')<CR><CR>")
+-- Don't copy to clipboard when deleting/replacing
 keymap("v", "s", '"_s', opts)
 keymap("v", "d", '""d', opts)
 keymap("v", "x", '"_x', opts)
@@ -53,6 +62,10 @@ keymap("v", "x", '"_x', opts)
 keymap("n", "<C-n>", ":tabnew<CR>", opts)
 keymap("n", "<Leader>p", ":tabprevious<CR>", opts)
 keymap("n", "<Leader>n", ":tabnext<CR>", opts)
+keymap("n", "<C-Tab>", ":tabnext<CR>", opts)
+
+-- Navigate buffers
+keymap("n", "<S-Tab>", ":bnext<CR>", opts)
 
 -- ToggleTerm
 keymap("n", "<Leader>t", ":ToggleTerm<CR>", opts)
@@ -72,13 +85,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 keymap("n", "<C-PageUp>", ":vertical resize -100<CR>", opts)
 keymap("n", "<C-PageDown>", ":vertical resize +100<CR>", opts)
-
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
-
--- Remove all trailing spaces on write
-keymap("n", "<leader>[", ":%s/\\s\\+$//e<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -121,13 +127,6 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<C-f>", ":Telescope find_files<CR>", opts)
 keymap("n", "<C-b>", ":Telescope buffers<CR>", opts)
 
--- Fzf
--- keymap("n", "<leader>ff", ":Files<CR>", opts)
--- keymap("n", "<leader>ft", ":Rg<CR>", opts)
--- keymap("n", "<leader>fb", ":Buffers<CR>", opts)
--- keymap("n", "<C-f>", ":Files<CR>", opts)
--- keymap("n", "<C-b>", ":Buffers<CR>", opts)
-
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
@@ -136,15 +135,15 @@ keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.curren
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
 
 -- DAP
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+-- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+-- keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
+-- keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
+-- keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
+-- keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
+-- keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+-- keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
+-- keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+-- keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)

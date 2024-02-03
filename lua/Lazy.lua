@@ -31,6 +31,7 @@ require("lazy").setup("user", {
         -- "telescope",
         "fzf",
         "fzf.vim",
+        "null-ls",
         -- "project",
         -- "treesitter",
         -- "gzip", -- Plugin for editing compressed files.

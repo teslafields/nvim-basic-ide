@@ -7,6 +7,9 @@ local M = {
     {
       "ahmedkhalf/project.nvim",
     },
+    {
+      "nvim-lua/plenary.nvim",
+    }
   },
 }
 
@@ -22,11 +25,12 @@ M.opts = {
       "--line-number",
       "--column",
       "--case-sensitive",
+      "--hidden",
     },
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "truncate" },
-    file_ignore_patterns = { ".git/", "node_modules" },
+    file_ignore_patterns = { ".git", "node_modules", "build" },
     preview = false,
     mappings = {
       i = {
