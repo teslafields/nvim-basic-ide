@@ -26,6 +26,7 @@ M.opts = {
       "--column",
       "--case-sensitive",
       "--hidden",
+      "--no-ignore",
     },
     prompt_prefix = " ",
     selection_caret = " ",
@@ -39,6 +40,20 @@ M.opts = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
       },
+    },
+  },
+  pickers = {
+    find_files = {
+      no_ignore = true,
+      -- find_command = {
+      --   'fd',
+      --   '--type',
+      --   'f',
+      --   '--no-ignore',
+      --   '--color=never',
+      --   '--hidden',
+      --   '--follow',
+      -- },
     },
   },
 }
