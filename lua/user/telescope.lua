@@ -31,7 +31,7 @@ M.opts = {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "truncate" },
-    file_ignore_patterns = { ".git", "node_modules", "build" },
+    -- file_ignore_patterns = { ".git", "node_modules", "build" },
     preview = false,
     mappings = {
       i = {
@@ -44,17 +44,21 @@ M.opts = {
   },
   pickers = {
     find_files = {
-      no_ignore = true,
-      -- find_command = {
-      --   'fd',
-      --   '--type',
-      --   'f',
-      --   '--no-ignore',
-      --   '--color=never',
-      --   '--hidden',
-      --   '--follow',
-      -- },
+      find_command = {
+        'fd',
+        '--type',
+        'f',
+        '--color=never',
+        '--follow',
+      },
     },
+    buffers = {
+      mappings = {
+        i = {
+          ["<c-d>"] = "delete_buffer",
+        }
+      }
+    }
   },
 }
 

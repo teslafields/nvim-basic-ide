@@ -27,6 +27,9 @@ vim.g.fzf_action = {
 --   command_mode = "c",
 
 -- My personal mappings
+-- Control + Arrows to navitate between words
+keymap("n", "<C-Left>", "b", opts)
+keymap("n", "<C-Right>", "w", opts)
 --   PageDown/PageUp
 keymap("i", "<PageDown>", "<Nop>", opts)
 keymap("i", "<PageUp>", "<Nop>", opts)
@@ -80,8 +83,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+-- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 keymap("n", "<C-PageUp>", ":vertical resize -100<CR>", opts)
 keymap("n", "<C-PageDown>", ":vertical resize +100<CR>", opts)
