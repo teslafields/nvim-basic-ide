@@ -27,11 +27,12 @@ M.opts = {
       "--case-sensitive",
       "--hidden",
       "--no-ignore",
+      "--glob=!tags", -- Exclude tags file at least
     },
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "truncate" },
-    -- file_ignore_patterns = { ".git", "node_modules", "build" },
+    file_ignore_patterns = { ".git", "node_modules", ".cache" },
     preview = false,
     mappings = {
       i = {
@@ -50,6 +51,7 @@ M.opts = {
         'f',
         '--color=never',
         '--follow',
+        '--unrestricted', -- -H + -I
       },
     },
     buffers = {

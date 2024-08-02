@@ -8,16 +8,6 @@ local opts = { silent = true }
 vim.g.mapleader = "\\"
 vim.o.autochdir = false
 
--- FZF
-vim.g.fzf_action = {
-	-- ["ctrl-c"] = "",
-	["ctrl-t"] = "tab split",
-	["ctrl-i"] = "split",
-	["ctrl-v"] = "vsplit",
-	["ctrl-j"] = "preview-down",
-	["ctrl-k"] = "preview-up",
-}
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -39,11 +29,18 @@ keymap("n", "<Space>", "<C-f>", opts)
 -- Close tab
 -- keymap("n", "<C-q>", ":tabclose<CR>", opts)
 
+-- Update loaded buffers with checktime
+keymap("n", "<Leader>cc", ":checkt<CR>", opts)
+
 --  Write to file with zz
 keymap("n", "zz", ":update<CR>", opts)
 
 -- Copy selected text to clipboard
 keymap("v", "<S-c>", "\"+y", opts)
+
+-- shiftwidth to 4 please!
+keymap("n", "<Leader><Tab>4", ":set shiftwidth=4<CR>", opts)
+keymap("n", "<Leader><Tab><Tab>", ":set invexpandtab<CR>", opts)
 
 -- Copy the current file path to clipboard
 keymap("n", "<Leader>cp", ":let @+=@%<CR>", opts)
@@ -53,7 +50,7 @@ keymap("n", "<Leader>cf", ":let @+=expand('%:t')<CR>", opts)
 -- Remove trailing white spaces
 keymap("n", "<Leader>w", ":let _s=@/ <Bar> :%s/\\s\\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>", opts)
 -- Select text and search-replace on it
-keymap("v", "<C-s>", "\"hy:%s/<C-r>h//gc<left><left><left>")
+keymap("v", "<C-s>", "\"hy:%s/<C-r>h//gcI<left><left><left><left>")
 -- Search for select text
 keymap("v", "//", "y/\\V<C-R>=escape(@\",'/\')<CR><CR>")
 -- Don't copy to clipboard when deleting/replacing

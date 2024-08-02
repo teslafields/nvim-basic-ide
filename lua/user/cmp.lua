@@ -107,7 +107,7 @@ function M.config()
         elseif luasnip.expandable() then
           luasnip.expand()
         elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+          -- luasnip.expand_or_jump()
         elseif check_backspace() then
           fallback()
         else

@@ -28,6 +28,8 @@ function M.config()
     keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+    keymap(bufnr, "n", "<leader>lst", "<cmd>LspStart<cr>", opts)
+    keymap(bufnr, "n", "<leader>lsp", "<cmd>LspStop<cr>", opts)
     keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
     keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
     keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
@@ -38,17 +40,36 @@ function M.config()
   end
 
   local lspconfig = require "lspconfig"
-  local on_attach = function(client, bufnr)
+  local on_init = function(client, bufnr)
     client.server_capabilities.semanticTokensProvider = nil
+  end
+  local on_attach = function(client, bufnr)
+    -- client.server_capabilities.semanticTokensProvider = nil
     lsp_keymaps(bufnr)
     require("illuminate").on_attach(client)
   end
 
+  local function has_value (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+  end
+
+  local blacklist = require("utils").blacklist
   for _, server in pairs(require("utils").servers) do
+    local autostart = true
+    -- if has_value(blacklist, server) then
+    --   autostart = false
+    -- end
     Opts = {
       on_attach = on_attach,
+      on_init = on_init,
       capabilities = capabilities,
-      autostart = false,
+      autostart = autostart,
     }
 
     server = vim.split(server, "@")[1]
@@ -102,6 +123,18 @@ function M.config()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
+
+  -- { "DEBUG", "INFO", "WARN", "ERROR", "OFF",
+  --   [0] = "TRACE",
+  --   DEBUG = 1,
+  --   ERROR = 4,
+  --   INFO = 2,
+  --   OFF = 5,
+  --   TRACE = 0,
+  --   WARN = 3
+  -- }
+  -- vim.lsp.set_log_level(4)
+  -- vim.lsp.set_log_level("off")
 end
 
 return M
