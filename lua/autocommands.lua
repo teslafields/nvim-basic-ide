@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- Remove trailing whitespaces from those filetypes
-vim.cmd "autocmd BufWritePre *.rs,*.c,*.h,*.md,*.sh,*.bb :%s/\\s\\+$//e"
+vim.cmd "autocmd BufWritePre *.py,*.rs,*.c,*.cpp,*.h,*.md,*.sh,*.bb :%s/\\s\\+$//e"
 
 -- Automatically close tab/vim when nvim-tree is the last window in the tab
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"

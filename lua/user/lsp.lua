@@ -62,24 +62,23 @@ function M.config()
   local blacklist = require("utils").blacklist
   for _, server in pairs(require("utils").servers) do
     local autostart = true
-    -- if has_value(blacklist, server) then
-    --   autostart = false
-    -- end
-    Opts = {
-      on_attach = on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-      autostart = autostart,
-    }
+    if not has_value(blacklist, server) then
+      Opts = {
+        on_attach = on_attach,
+        on_init = on_init,
+        capabilities = capabilities,
+        autostart = autostart,
+      }
 
-    server = vim.split(server, "@")[1]
+      server = vim.split(server, "@")[1]
 
-    local require_ok, conf_opts = pcall(require, "settings." .. server)
-    if require_ok then
-      Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
+      local require_ok, conf_opts = pcall(require, "settings." .. server)
+      if require_ok then
+        Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
+      end
+
+      lspconfig[server].setup(Opts)
     end
-
-    lspconfig[server].setup(Opts)
   end
 
   local signs = {

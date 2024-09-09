@@ -3,10 +3,10 @@ local M = {}
 M.servers = {
   "clangd",
   "rust_analyzer",
+  "pylsp",
 }
 
 M.blacklist = {
-  "rust_analyzer",
 }
 
 
