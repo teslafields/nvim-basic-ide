@@ -32,6 +32,7 @@ require("lazy").setup("user", {
         "fzf",
         "fzf.vim",
         "null-ls",
+        "nvim-cmp",
         -- "project",
         -- "treesitter",
         -- "gzip", -- Plugin for editing compressed files.

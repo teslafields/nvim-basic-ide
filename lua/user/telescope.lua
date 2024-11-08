@@ -32,7 +32,6 @@ M.opts = {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "truncate" },
-    file_ignore_patterns = { ".git", "node_modules", ".cache" },
     preview = false,
     mappings = {
       i = {
@@ -48,10 +47,20 @@ M.opts = {
       find_command = {
         'fd',
         '--type',
-        'f',
-        '--color=never',
-        '--follow',
-        '--unrestricted', -- -H + -I
+        'file',
+        '--type',
+        'symlink',
+        '--hidden',
+        '--no-ignore',
+        '--exclude', 
+        '.git',
+        -- 'fd',
+        -- '--type',
+        -- 'f',
+        -- '--color=never',
+        -- '--follow',
+        -- '--unrestricted', -- -H + -I
+        -- '--hidden',
       },
     },
     buffers = {
