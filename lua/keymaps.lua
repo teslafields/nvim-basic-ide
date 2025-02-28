@@ -90,7 +90,7 @@ keymap("n", "<C-PageDown>", ":vertical resize +100<CR>", opts)
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<S-q>", "<cmd>BufDel<CR>", opts)
 
 -- Better paste
 keymap("v", "p", "P", opts)

@@ -28,6 +28,7 @@ require("lazy").setup("user", {
         -- "bufferline",
         "nvim-treesitter", -- this is breaking bash highlight
         "gitsigns",
+        "git-conflict",
         -- "telescope",
         "fzf",
         "fzf.vim",
