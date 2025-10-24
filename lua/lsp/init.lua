@@ -4,10 +4,7 @@ M.servers = {
   "clangd",
   "rust_analyzer",
   "pylsp",
+  "lua_ls",
 }
-
-M.blacklist = {
-}
-
 
 return M

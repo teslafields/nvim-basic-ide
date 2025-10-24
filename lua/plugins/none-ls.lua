@@ -1,12 +1,9 @@
 local M = {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   event = "BufReadPre",
-  commit = "60b4a7167c79c7d04d1ff48b55f2235bf58158a7",
   dependencies = {
-    {
+      "nvimtools/none-ls-extras.nvim",
       "nvim-lua/plenary.nvim",
-      commit = "9a0d3bf7b832818c042aaf30f692b081ddd58bd9",
-    },
   },
 }
 
@@ -26,9 +23,6 @@ function M.config()
         extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
       },
       formatting.black.with { extra_args = { "--fast" } },
-      formatting.stylua,
-      formatting.google_java_format,
-      diagnostics.flake8,
     },
   }
 end
