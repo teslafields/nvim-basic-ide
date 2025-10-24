@@ -58,6 +58,8 @@ M.opts = {
         '.cache',
         '--exclude',
         'build',
+        '--exclude',
+        'target',
         -- 'fd',
         -- '--type',
         -- 'f',

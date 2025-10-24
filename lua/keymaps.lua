@@ -32,6 +32,13 @@ keymap("n", "<Space>", "<C-f>", opts)
 -- Update loaded buffers with checktime
 keymap("n", "<Leader>cc", ":checkt<CR>", opts)
 
+-- Open file with system's default GUI app
+keymap("n", "<Leader>xo", ":lua os.execute('xdg-open ' .. vim.fn.expand('%'))<CR>", opts)
+
+-- Resize nvim-tree
+keymap("n", "<Leader>rr", ":NvimTreeResize +10<CR>", opts)
+keymap("n", "<Leader>rs", ":NvimTreeResize -10<CR>", opts)
+
 --  Write to file with zz
 keymap("n", "zz", ":update<CR>", opts)
 
@@ -46,6 +53,10 @@ keymap("n", "<Leader><Tab><Tab>", ":set invexpandtab<CR>", opts)
 keymap("n", "<Leader>cp", ":let @+=@%<CR>", opts)
 -- Copy the current file name to clipboard
 keymap("n", "<Leader>cf", ":let @+=expand('%:t')<CR>", opts)
+-- Copy the current file absolute path to clipboard
+keymap("n", "<Leader>cap", ":let @+=expand('%:p')<CR>", opts)
+-- Copy the current working dir to clipboard
+keymap("n", "<leader>cwd", ":let @+=getcwd()<CR>", opts)
 
 -- Remove trailing white spaces
 keymap("n", "<Leader>w", ":let _s=@/ <Bar> :%s/\\s\\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>", opts)
