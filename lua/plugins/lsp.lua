@@ -32,6 +32,8 @@ function M.config()
       keymap.set("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
       keymap.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
       require("illuminate").on_attach(client)
+
+      client.server_capabilities.semanticTokensProvider = nil
     end
   })
 
@@ -61,36 +63,20 @@ function M.config()
   end
 
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-
-  vim.diagnostic.config({
-    signs = {
-      text = {
-        [vim.diagnostic.severity.ERROR] = '',
-        [vim.diagnostic.severity.WARN] = '',
-      },
-      linehl = {
-        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-        [vim.diagnostic.severity.WARN] = 'WarningMsg',
-      },
-      numhl = {
-        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-        [vim.diagnostic.severity.WARN] = 'WarningMsg',
-      },
+    active = true,
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
     },
-  })
+  }
 
   local config = {
     -- disable virtual text
     virtual_text = false,
     -- show signs
-    signs = {
-      active = signs,
-    },
+    signs = signs,
     update_in_insert = true,
     underline = true,
     severity_sort = true,
