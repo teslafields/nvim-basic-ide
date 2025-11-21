@@ -3,9 +3,6 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
---Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = "\\"
 vim.o.autochdir = false
 
 -- Modes
@@ -158,4 +155,7 @@ keymap("x", "<C-c>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.f
 -- keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+keymap("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+keymap("n", "<leader>lst", "<cmd>LspStart<cr>", opts)
+keymap("n", "<leader>lsp", "<cmd>LspStop<cr>", opts)
+keymap("n", "<leader>lI", "<cmd>Mason<cr>", opts)
