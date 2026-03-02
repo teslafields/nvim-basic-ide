@@ -8,6 +8,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c' },
+  callback = function() vim.treesitter.start() end,
+})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()
