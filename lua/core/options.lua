@@ -44,3 +44,9 @@ vim.opt.formatoptions:remove { "c", "r", "o" }  -- This is a sequence of letters
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.opt.listchars= { tab = '>-' }
+
+vim.opt.foldmethod = 'expr'  -- changed from 'indent'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'  -- use treesitter
+vim.opt.foldlevel = 99
+vim.opt.foldenable = false
+vim.opt.foldcolumn = '1'  -- optional: show fold indicators
