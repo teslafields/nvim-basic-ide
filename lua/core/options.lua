@@ -50,3 +50,12 @@ vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'  -- use treesitter
 vim.opt.foldlevel = 99
 vim.opt.foldenable = false
 vim.opt.foldcolumn = '1'  -- optional: show fold indicators
+
+-- Clipboard integration over SSH via OSC52: no server/daemon or open port
+-- needed. Neovim emits an OSC52 escape sequence that your *local* terminal
+-- emulator (iTerm2, kitty, WezTerm, Windows Terminal, etc.) intercepts and
+-- writes to your system clipboard -- passes through SSH/tmux/podman exec
+-- transparently. Requires a terminal that supports OSC52 (most modern ones
+-- do); paste ("+p / "*p) may not work on terminals that disable OSC52 read
+-- for security -- copy ("+y / "*y) is the reliable direction.
+vim.g.clipboard = vim.g.clipboard or require("vim.ui.clipboard.osc52").get()
