@@ -58,4 +58,24 @@ vim.opt.foldcolumn = '1'  -- optional: show fold indicators
 -- transparently. Requires a terminal that supports OSC52 (most modern ones
 -- do); paste ("+p / "*p) may not work on terminals that disable OSC52 read
 -- for security -- copy ("+y / "*y) is the reliable direction.
-vim.g.clipboard = vim.g.clipboard or require("vim.ui.clipboard.osc52").get()
+-- (vim.opt.clipboard = "unnamedplus" is already set above.)
+local osc52 = require("vim.ui.clipboard.osc52")
+
+local function paste_from_unnamed()
+  return {
+    vim.fn.getreg('"', 1, true),
+    vim.fn.getregtype('"'),
+  }
+end
+
+vim.g.clipboard = {
+  name = "OSC 52 copy-only",
+  copy = {
+    ["+"] = osc52.copy("+"),
+    ["*"] = osc52.copy("*"),
+  },
+  paste = {
+    ["+"] = paste_from_unnamed,
+    ["*"] = paste_from_unnamed,
+  },
+}
